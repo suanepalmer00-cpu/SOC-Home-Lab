@@ -89,13 +89,36 @@ The connectivity test was successful.
 
 Successful communication was established between the Kali Linux testing system and the Windows 11 monitored endpoint.
 
+
+## Phase 2: Windows Log Collection
+
+### Splunk Enterprise
+
+Splunk Enterprise was configured to collect Windows Event Logs from the Windows 11 monitored endpoint.
+
+### Event Logs
+
+The following Windows Event Log channels were configured:
+
+- Application
+- System
+- Security
+
+### Log Collection Verification
+
+Windows Security events were successfully indexed in Splunk Enterprise.
+
+Search used:
+
+```spl
+index=main sourcetype="WinEventLog:Security"
+
 ## Upcoming Phases
 
-- Install and configure Splunk
-- Install Sysmon (System Monitor)
-- Forward Windows logs to Splunk
+
 - Generate controlled security events
 - Investigate suspicious activity
 - Create Splunk detections
 - Map activity to MITRE ATT&CK
 - Complete Incident Response (IR) investigations
+
