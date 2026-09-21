@@ -1,2 +1,101 @@
-# SOC-Home-Lab
-A hands-on Security Operations Center (SOC) home lab documenting security monitoring, log analysis, threat detection, and incident response.
+# SOC Home Lab
+
+## Overview
+
+This project documents the development of a Security Operations Center (SOC) home lab designed to practice security monitoring, log analysis, threat detection, and incident response.
+
+## Objectives
+
+- Build a virtualized security lab
+- Collect and analyze security logs
+- Practice Security Information and Event Management (SIEM)
+- Investigate suspicious activity
+- Identify Indicators of Compromise (IOCs)
+- Map activity to MITRE ATT&CK
+- Create security detections and alerts
+- Document incident investigations
+
+## Lab Environment
+
+### Virtual Machines
+
+| System | Operating System | Role |
+|---|---|---|
+| Kali Linux | Kali Linux | Security Testing / Attack Simulation |
+| Windows 11 | Windows 11 | Monitored Endpoint |
+| Metasploitable2 | Linux | Vulnerable Test System |
+
+### Security Tools
+
+| Tool | Purpose |
+|---|---|
+| Splunk | Security Information and Event Management (SIEM) |
+| Sysmon | System Monitoring and Windows Event Logging |
+| Wireshark | Network Traffic Analysis |
+| Nmap | Network Discovery and Security Scanning |
+| MITRE ATT&CK | Adversary Tactics, Techniques, and Common Knowledge |
+
+### Network Architecture
+
+The lab uses an isolated VirtualBox Host-Only network to allow the virtual machines to communicate within the lab environment.
+
+```text
+                    SOC HOME LAB
+
+                       Splunk
+                         |
+                         | Security Logs
+                         |
+                  +------+------+
+                  |             |
+                  ▼             ▼
+            Windows 11      Network Data
+            Endpoint
+                  ▲
+                  |
+          Controlled Activity
+                  |
+                  ▼
+             Kali Linux
+        Security Testing
+
+                  |
+                  ▼
+           Metasploitable2
+          Vulnerable System
+
+## Phase 1: Network Configuration
+
+### VirtualBox Network
+
+The virtual machines were configured on an isolated VirtualBox Host-Only network.
+
+### Connectivity Testing
+
+Connectivity between Kali Linux and Windows 11 was verified using ICMP (Internet Control Message Protocol) ping testing.
+
+Command:
+
+```bash
+ping -c 4 [Windows VM IP]
+```
+## Result
+
+The connectivity test was successful.
+
+- Packets transmitted: 4
+- Packets received: 4
+- Packet loss: 0%
+
+Successful communication was established between the Kali Linux testing system and the Windows 11 monitored endpoint.
+
+## Upcoming Phases
+
+- Install and configure Splunk
+- Install Sysmon (System Monitor)
+- Forward Windows logs to Splunk
+- Generate controlled security events
+- Investigate suspicious activity
+- Create Splunk detections
+- Map activity to MITRE ATT&CK
+- Complete Incident Response (IR) investigations
