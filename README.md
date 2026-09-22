@@ -188,6 +188,18 @@ The activity was determined to be benign because the process was intentionally s
 
 ![Sysmon Process Creation](screenshots/sysmon-process-creation.png)
 
+**PowerShell Process Listing**
+
+PowerShell was used on the Windows 11 victim machine to display currently running processes using the `Get-Process` command.
+
+![PowerShell Process Listing](screenshots/sysmon-powershell-commandline.png)
+
+**PowerShell Activity in Splunk**
+
+The PowerShell activity was then searched in Splunk using Sysmon process creation events. The results show the PowerShell executable, command line, and parent process information.
+
+![PowerShell Activity in Splunk](screenshots/sysmon-powershell-processes.png)
+
 ## Brute-Force Login Detection
 
 A controlled authentication test was performed on the Windows 11 victim machine by generating multiple failed login attempts.
