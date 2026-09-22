@@ -113,6 +113,25 @@ Search used:
 ```spl
 index=main sourcetype="WinEventLog:Security"
 
+### Sysmon Log Collection
+
+Sysmon was installed on the Windows 11 victim machine and configured to generate detailed Windows process and system activity logs.
+
+The Sysmon Operational event channel was configured in Splunk Enterprise:
+
+- Microsoft-Windows-Sysmon/Operational
+
+### Sysmon Log Collection Verification
+
+Sysmon events were successfully indexed and searchable in Splunk Enterprise.
+
+Search used:
+
+```spl
+index=default sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational"
+
+
+
 ## Upcoming Phases
 
 
