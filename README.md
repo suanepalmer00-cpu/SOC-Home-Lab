@@ -113,6 +113,37 @@ Search used:
 ```spl
 index=main sourcetype="WinEventLog:Security"
 
+## Failed Login Investigation
+
+A controlled failed authentication test was performed on the Windows 11 victim machine using an invalid username and password.
+
+### Splunk Search
+
+```spl
+
+index=main sourcetype="WinEventLog:Security" EventCode=4625
+'''
+
+### Findings
+
+- Event ID: 4625
+- Event: An account failed to log on
+- Account: FakeUser
+- Logon Type: 3
+- Source: Windows Security auditing
+
+### Analysis
+
+The failed login was intentionally generated as part of a controlled SOC lab exercise. Splunk successfully collected and displayed the Windows Security event.
+
+In a real environment, repeated Event ID 4625 events could indicate password guessing or unauthorized access attempts and would require further investigation.
+
+### Evidence
+
+![Failed Login Attempt](screenshots/failed-login-attempt.png)
+
+![Splunk Event ID 4625](screenshots/failed-login-splunk-event.png)
+
 ### Sysmon Log Collection
 
 Sysmon was installed on the Windows 11 victim machine and configured to generate detailed Windows process and system activity logs.
