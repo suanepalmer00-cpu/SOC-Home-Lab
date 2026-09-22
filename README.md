@@ -229,6 +229,50 @@ The activity in this lab was intentionally generated for testing purposes.
 
 ![Brute Force Detection](screenshots/brute-force-detection.png)
 
+## Windows Account Creation Investigation
+
+### Objective
+
+Detect and investigate the creation of a new Windows local user account using Windows Security logs and Splunk.
+
+### Controlled Activity
+
+A test account named `SOC-TestUser` was created in the Windows lab environment using:
+
+```powershell
+net user SOC-TestUser <password> /add
+```
+### Splunk Detection
+
+The event was identified using:
+
+```spl
+index=* EventCode=4720
+```
+### Analysis
+
+The Splunk investigation identified a Windows Security Event ID 4720 associated with the creation of the `SOC-TestUser` account.
+
+The event was reviewed to determine which account performed the account-creation activity and to verify the newly created account. The activity was intentionally generated in the lab environment, so it was considered expected rather than malicious.
+
+From a SOC analyst perspective, unexpected account creation should be investigated because an unauthorized local account could potentially provide additional access to a system.
+
+This investigation demonstrates the ability to identify account-creation activity, review event details, determine the context of the activity, and document the investigation using Splunk.
+
+### MITRE ATT&CK
+
+**T1136.001 — Create Account: Local Account**
+
+This activity is associated with the MITRE ATT&CK technique for creating a local account on a Windows system.
+
+The technique was mapped to this investigation because the lab activity involved creating the `SOC-TestUser` local account using the Windows `net user` command.
+
+### Evidence
+
+![Account Creation Command](screenshots/account-creation-command.png)
+
+![Account Creation Event](screenshots/account-creation-event.png)
+
 ## Upcoming Phases
 
 
