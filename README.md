@@ -138,7 +138,7 @@ A controlled process execution test was performed by launching Notepad on the Wi
 
 ```spl
 index=default sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 Image="*notepad.exe"
-
+'''
 ### Findings
 
 - Sysmon Event ID: 1 (Process Creation)
