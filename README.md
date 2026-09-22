@@ -130,7 +130,32 @@ Search used:
 ```spl
 index=default sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational"
 
+## Sysmon Process Creation Investigation
 
+A controlled process execution test was performed by launching Notepad on the Windows 11 victim machine.
+
+### Splunk Search
+
+```spl
+index=default sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 Image="*notepad.exe"
+
+### Findings
+
+- Sysmon Event ID: 1 (Process Creation)
+- Process: Notepad.exe
+- User: SuaneVic\Suane
+- Integrity Level: Medium
+- Source: Microsoft-Windows-Sysmon/Operational
+
+### Analysis
+
+Notepad.exe was intentionally launched as part of a controlled security test. Sysmon recorded the process creation event and Splunk successfully collected and displayed the event.
+
+The activity was determined to be benign because the process was intentionally started during the test.
+
+### Evidence
+
+![Sysmon Process Creation](screenshots/sysmon-process-creation.png)
 
 ## Upcoming Phases
 
