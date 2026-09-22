@@ -188,6 +188,35 @@ The activity was determined to be benign because the process was intentionally s
 
 ![Sysmon Process Creation](screenshots/sysmon-process-creation.png)
 
+## Brute-Force Login Detection
+
+A controlled authentication test was performed on the Windows 11 victim machine by generating multiple failed login attempts.
+
+### Detection Query
+
+```spl
+index=main sourcetype="WinEventLog:Security" EventCode=4625 | bin _time span=15m | stats count by _time, host | where count >= 5
+```
+### Findings
+
+Splunk identified 7 failed authentication events from the Windows 11 victim host within the configured 15-minute detection window.
+
+The events were associated with Windows Security Event ID 4625, which indicates that an account failed to log on.
+
+### Analysis
+
+This detection demonstrates how repeated failed authentication events can be identified using Splunk.
+
+In a production environment, multiple failed logins within a short period could warrant investigation for possible password guessing or brute-force activity.
+
+The activity in this lab was intentionally generated for testing purposes.
+
+### Evidence
+
+![Brute Force Events](screenshots/brute-force-event.png)
+
+![Brute Force Detection](screenshots/brute-force-detection.png)
+
 ## Upcoming Phases
 
 
